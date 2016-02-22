@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"
+
+></script>
+		
+		<title>Exercice 2 - Jordy CABANNES</title>
+	</head>
+	<body>
+		<form id="formulaire">
+			<label for="kilos">Nombre de kilomètres parcourus : </label>
+			<input type="number" name="kilos" id="kilos"><br>
+			<label for="litres">Nombre de litres consommés : </label>
+			<input type="number" name="litres" id="litres"><br>
+			<input type="button" name="calcul" id="calcul" value="Calculer">
+		
+			<script>
+			//Variable qui permet de ne pas réafficher le résultat si cela a déjà été fait.
+			dejaAffiche=false;
+
+			//Fonction appelée quand on clique sur le bouton "Calculer" du formulaire.
+			$('#calcul').click(function calculer()	
+			{
+				//On récupère le nombre de kilomètres saisi par l'utilisateur.
+				var kilometres = $('#kilos').val();
+				
+				//On récupère le nombre de litres saisi par l'utilisateur.
+				var litres = $('#litres').val();
+
+				//Si aucun résultat n'a été affiché et que des valeurs ont été saisies pour
+				//"kilometres" et "litres" alors on effectue les calculs pour le nombre de
+				//litres pour 100km et le nombre de miles par gallon. 
+				if(!dejaAffiche && kilometres!=="" && litres!=="")
+				{			
+					var gallons = litres/3.78541178;
+					var miles = kilometres/1.609344;
+
+					var litres100km = (100*litres)/kilometres;
+					var milesPerGallons = miles/gallons;
+					
+					//On affiche les résultats sur la page html.					
+					$('#kilometres').append("Kilométrage : " + litres100km + " litres aux 100kms");
+					$('#kilometres').after("Millage : " + milesPerGallons + " milles au gallon");				
+					
+					//Om met la variable suivante à true pour empêcher un réaffichage du résultat si l'on clique à nouveau sur le bouton "Calculer".				
+					dejaAffiche=true;
+				}
+				
+			});		
+			</script>
+		
+		</form>
+		<p id="kilometres"></p>
+	</body>
+</html>
+
